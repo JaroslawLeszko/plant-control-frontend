@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {AddPlant} from "./components/AddPlant";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <header>
+
+            <h1>Plant Control</h1>
+            <div className="search">
+                <input type="text"/> <button>Search</button>
+            </div>
+        </header>
+        <button className="add-button">Add plant</button>
+        <AddPlant/>
+        <div className="plant-list">
+
+        </div>
+    </>
   );
 }
 
