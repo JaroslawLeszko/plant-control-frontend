@@ -1,25 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {AddPlant} from "./components/AddPlant/AddPlant";
 import {PlantList} from "./components/Plant/PlantList";
+import {Header} from "./components/Header/Header";
+import {SearchContext} from "./contexts/search";
+import {Route, Routes} from "react-router-dom";
 
 
 function App() {
+    const [search, setSearch] = useState('')
+
   return (
     <>
-        <header>
-
-            <h1>Plant Control</h1>
-            <div className="search">
-                <input type="text"/> <button>Search</button>
-            </div>
-        </header>
-        <button className="add-button">Add plant</button>
-        <PlantList/>
-        <AddPlant/>
-        <div className="plant-list">
-
-        </div>
+        <SearchContext.Provider value={{search, setSearch}}>
+            <Header/>
+            <Routes>
+                <Route path="/" element={<PlantList/>}/>
+                <Route path="/add" element={<AddPlant/>}/>
+            </Routes>
+        </SearchContext.Provider>
     </>
   );
 }
