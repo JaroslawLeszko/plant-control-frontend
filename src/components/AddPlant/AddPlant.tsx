@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from 'react';
-import {PlantEntity} from 'types';
+
 
 export const AddPlant = () => {
 
@@ -15,6 +15,8 @@ export const AddPlant = () => {
 
     });
 
+    const [loading, setLoading] = useState<boolean>(false);
+
     const updateForm = (key:string, value: any) => {
         setForm(form => ({
             ...form,
@@ -25,6 +27,7 @@ export const AddPlant = () => {
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
 
+        setLoading(true);
 
         try {
             const res = await fetch(`http://localhost:3001/`, {
@@ -34,11 +37,15 @@ export const AddPlant = () => {
                 },
                 body: JSON.stringify(form),
             });
-            const data: PlantEntity = await res.json();
+            // const data: PlantEntity = await res.json();
         } finally {
-            console.log('hh');
+            setLoading(false);
         }
     };
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
 
     return <form onSubmit={sendForm}>
         <h2>Add plant to collection</h2>

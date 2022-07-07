@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import {AddPlant} from "./components/AddPlant";
+import {AddPlant} from "./components/AddPlant/AddPlant";
+import {PlantList} from "./components/Plant/PlantList";
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
             </div>
         </header>
         <button className="add-button">Add plant</button>
+        <PlantList/>
         <AddPlant/>
         <div className="plant-list">
 
