@@ -1,4 +1,5 @@
 import React, {FormEvent, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 export const AddPlant = () => {
@@ -47,7 +48,8 @@ export const AddPlant = () => {
         return <p>Loading...</p>
     }
 
-    return <form onSubmit={sendForm}>
+    return <>
+        <form onSubmit={sendForm}>
         <h2>Add plant to collection</h2>
         <p>
             <label>
@@ -114,8 +116,9 @@ export const AddPlant = () => {
         <p>
             <label>
                 Quarantine: <br/>
-                <button type="reset" onClick={e => updateForm('quarantine', 1)}>Yes</button>
-                <button type="reset" onClick={e => updateForm('quarantine', 0)}>No</button>
+                {/*<button type="reset" onClick={e => updateForm('quarantine', 1)}>Yes</button>*/}
+                {/*<button type="reset" onClick={e => updateForm('quarantine', 0)}>No</button>*/}
+                <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
              </label>
         </p>
         <p>
@@ -129,5 +132,7 @@ export const AddPlant = () => {
             </label>
         </p>
         <button type="submit">Save</button>
-    </form>;
+    </form>
+    <Link to="/">Back</Link>
+    </>
 };

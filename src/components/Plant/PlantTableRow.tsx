@@ -1,4 +1,4 @@
-import React, {MouseEvent} from "react";
+import React from "react";
 import {PlantEntity} from 'types';
 import {PlantActions} from "./PlantActions";
 
@@ -27,11 +27,7 @@ export const PlantTableRow = (props: Props) => {
 
             <tr>
                 <PlantActions
-                    lastWatering={props.plant.lastWatering}
-                    lastFertilization={props.plant.lastFertilization}
-                    lastDustRemoval={props.plant.lastDustRemoval}
-                    name={props.plant.name}
-                    id={props.plant.id as string}
+                    plant={props.plant}
                     onPlantsChange={props.onPlantsChange}
                 />
             </tr>
