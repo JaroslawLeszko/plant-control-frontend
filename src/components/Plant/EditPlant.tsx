@@ -100,6 +100,7 @@ export const EditPlant = () => {
                         type="checkbox"
                         value={editPlant.quarantine}
                         onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
+                        checked={editPlant.quarantine === 1}
                     />
                 </label>
             </p>

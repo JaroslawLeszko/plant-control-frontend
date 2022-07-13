@@ -1,5 +1,7 @@
-import React, {FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
+import { PlantEntity } from 'types';
+
 
 
 export const AddPlant = () => {
@@ -16,15 +18,34 @@ export const AddPlant = () => {
 
     });
 
+    const [image, setImage] = useState({preview: '', data: ''});
+    const [status, setStatus] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
 
-    const updateForm = (key:string, value: any) => {
+
+
+    const updateForm = (key: string, value: any) => {
         setForm(form => ({
             ...form,
             [key]: value,
         }));
+
     };
 
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+        const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+        }
+        setImage(img as SetStateAction<any>);
+        const filePath = e.target.files[0].name
+        setForm(form => ({
+            ...form,
+            image: filePath
+        }));
+
+    }
     const sendForm = async (e: FormEvent) => {
         e.preventDefault();
 
@@ -38,10 +59,20 @@ export const AddPlant = () => {
                 },
                 body: JSON.stringify(form),
             });
-            // const data: PlantEntity = await res.json();
+
+            const formData = new FormData()
+            formData.append('file', image.data)
+            const response = await fetch(`http://localhost:3001/add/image`, {
+                method: "POST",
+                body: formData,
+
+            })
+            if (response) setStatus(response.statusText);
+            const data: PlantEntity = await res.json();
         } finally {
             setLoading(false);
         }
+
     };
 
     if (loading) {
@@ -49,90 +80,93 @@ export const AddPlant = () => {
     }
 
     return <>
-        <form onSubmit={sendForm}>
         <h2>Add plant to collection</h2>
-        <p>
-            <label>
-                Name: <br/>
-                <input
-                    type="text"
-                    value={form.name}
-                    onChange={e => updateForm('name', e.target.value)}
-                />
-            </label>
-        </p>
-        <p>
-            <label>
-                Last watering: <br/>
-                <input
-                    type="date"
-                    value={form.lastWatering}
-                    onChange={e => updateForm('lastWatering', e.target.value)}
-                />
-            </label>
-        </p>
-        <p>
-            <label>
-                Watering period (days): <br/>
-                <input
-                    type="number"
-                    value={form.wateringPeriod}
-                    onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
-                />
-            </label>
-        </p>
-        <p>
-            <label>
-                Last Fertilization: <br/>
-                <input
-                    type="date"
-                    value={form.lastFertilization}
-                    onChange={e => updateForm('lastFertilization', e.target.value)}
-                />
-            </label>
-        </p>
 
-        <p>
-            <label>
-                Fertilization period (days): <br/>
-                <input
-                    type="number"
-                    value={form.fertilizationPeriod}
-                    onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
-                />
-            </label>
-        </p>
+        <form onSubmit={sendForm}>
+            <p>
+                <label>
+                    Image: <br/>
+                    {image.preview && <img src={image.preview} alt={"image"} width='100' height='100' />}
+                    <input
+                        type="file"
+                        name='file'
+                        onChange={handleFileChange}
 
-        <p>
-            <label>
-                Last Dust removal: <br/>
-                <input
-                    type="date"
-                    value={form.lastDustRemoval}
-                    onChange={e => updateForm('lastDustRemoval', e.target.value)}
-                />
-            </label>
-        </p>
-        <p>
-            <label>
-                Quarantine: <br/>
-                {/*<button type="reset" onClick={e => updateForm('quarantine', 1)}>Yes</button>*/}
-                {/*<button type="reset" onClick={e => updateForm('quarantine', 0)}>No</button>*/}
-                <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
-             </label>
-        </p>
-        <p>
-            <label>
-                Image (add URL): <br/>
-                <input
-                    type="url"
-                    value={form.image}
-                    onChange={e => updateForm('image', e.target.value)}
-                />
-            </label>
-        </p>
-        <button type="submit">Save</button>
-    </form>
-    <Link to="/">Back</Link>
+                    />
+                    {status && <p>{status}</p>}
+                </label>
+            </p>
+
+            <p>
+                <label>
+                    Name: <br/>
+                    <input
+                        type="text"
+                        value={form.name}
+                        onChange={e => updateForm('name', e.target.value)}
+                    />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last watering: <br/>
+                    <input
+                        type="date"
+                        value={form.lastWatering}
+                        onChange={e => updateForm('lastWatering', e.target.value)}
+                    />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Watering period (days): <br/>
+                    <input
+                        type="number"
+                        value={form.wateringPeriod}
+                        onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
+                    />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Fertilization: <br/>
+                    <input
+                        type="date"
+                        value={form.lastFertilization}
+                        onChange={e => updateForm('lastFertilization', e.target.value)}
+                    />
+                </label>
+            </p>
+
+            <p>
+                <label>
+                    Fertilization period (days): <br/>
+                    <input
+                        type="number"
+                        value={form.fertilizationPeriod}
+                        onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
+                    />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Dust removal: <br/>
+                    <input
+                        type="date"
+                        value={form.lastDustRemoval}
+                        onChange={e => updateForm('lastDustRemoval', e.target.value)}
+                    />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Quarantine: <br/>
+                    <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
+                </label>
+            </p>
+
+            <button type="submit">Save</button>
+        </form>
+        <Link to="/">Back</Link>
     </>
 };

@@ -1,15 +1,10 @@
 import React, {MouseEvent} from "react";
 import { PlantEntity } from "types";
 import {Btn} from "../common/Btn";
-import {EditPlant} from "./EditPlant";
+
 
 interface Props {
     plant: PlantEntity,
-    // lastWatering: string,
-    // lastFertilization: string,
-    // lastDustRemoval: string,
-    // id: string,
-    // name :string,
     onPlantsChange: () => void,
 }
 
@@ -60,20 +55,6 @@ export const PlantActions = (props: Props) => {
         props.onPlantsChange();
     };
 
-    // const editPlant = async (event: MouseEvent) => {
-    //     event.preventDefault();
-    //
-    //     await fetch(`http://localhost:3001/edit/${props.id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             lastDustRemoval: new Date(),
-    //         }),
-    //     });
-    //     props.onPlantsChange();
-    // };
 
     const deletePlant = async (event: MouseEvent) => {
         event.preventDefault();

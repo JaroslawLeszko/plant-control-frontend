@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import {PlantEntity} from 'types';
 import {PlantActions} from "./PlantActions";
+
 
 interface Props {
     plant: PlantEntity;
@@ -14,10 +16,26 @@ export const PlantTableRow = (props: Props) => {
     const fertilizerEta = Date.parse(String(props.plant.lastFertilization)) + ((props.plant.fertilizationPeriod + 1) * 1000 * 60 * 60 * 24) - Date.now();
     const daysToFertilizer = fertilizerEta > 0 ? Math.floor(fertilizerEta / (1000 * 60 * 60 * 24)) : 0;
 
+    const [src, setSrc] = useState<string>('');
+
+    const fetchImage = async () => {
+        const url = `http://localhost:3001/${props.plant.image}`
+        axios.get(url, {responseType: 'blob'})
+            .then(res => {
+                const imageUrl = URL.createObjectURL(res.data);
+                setSrc(imageUrl);
+            })
+    }
+    console.log(src)
+
+    useEffect(() => {
+        fetchImage();
+    }, []);
+
 
     return (
         <tr>
-            <th>{props.plant.image}</th>
+            <th><img src={src}  alt={props.plant.image} width="100" height="100"/></th>
             <tr>{props.plant.name}</tr>
             <tr>{`Next watering ${daysToWater} days`}</tr>
             <tr>{`Next fertilization ${daysToFertilizer} days`}</tr>
