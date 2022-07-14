@@ -1,5 +1,6 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import './EditPlant.css';
 
 export const EditPlant = () => {
     const [editPlant, setEditPlant] = useState({
@@ -51,61 +52,64 @@ export const EditPlant = () => {
     };
 
     return <>
-        <form onSubmit={sendForm}>
-            <h2>Edit plant info</h2>
-            <p>
-                <label>
-                    Name: <br/>
-                    <input
-                        type="text"
-                        value={editPlant.name}
-                        onChange={e => updatePlant('name', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Watering period: <br/>
-                    <input
-                        type="text"
-                        value={editPlant.wateringPeriod}
-                        onChange={e => updatePlant('wateringPeriod', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Fertilization period: <br/>
-                    <input
-                        type="text"
-                        value={editPlant.fertilizationPeriod}
-                        onChange={e => updatePlant('fertilizationPeriod', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Image: <br/>
-                    <input
-                        type="text"
-                        value={editPlant.image}
-                        onChange={e => updatePlant('image', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Quarantine: <br/>
-                    <input
-                        type="checkbox"
-                        value={editPlant.quarantine}
-                        onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
-                        checked={editPlant.quarantine === 1}
-                    />
-                </label>
-            </p>
-            <button type="submit">Save</button>
-        </form>
-        <Link to="/">Back</Link>
+        <div className="edit">
+            <h2>EDIT PLANT INFO</h2>
+            <form className="add-form" onSubmit={sendForm}>
+
+                <p>
+                    <label>
+                        Name: <br/>
+                        <input
+                            type="text"
+                            value={editPlant.name}
+                            onChange={e => updatePlant('name', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Watering period: <br/>
+                        <input
+                            type="text"
+                            value={editPlant.wateringPeriod}
+                            onChange={e => updatePlant('wateringPeriod', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Fertilization period: <br/>
+                        <input
+                            type="text"
+                            value={editPlant.fertilizationPeriod}
+                            onChange={e => updatePlant('fertilizationPeriod', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Image: <br/>
+                        <input
+                            type="text"
+                            value={editPlant.image}
+                            onChange={e => updatePlant('image', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Quarantine: <br/>
+                        <input
+                            type="checkbox"
+                            value={editPlant.quarantine}
+                            onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
+                            checked={editPlant.quarantine === 1}
+                        />
+                    </label>
+                </p>
+                <button type="submit">Save</button>
+            </form>
+            <Link className="edit-back-btn" to="/">Back</Link>
+        </div>
     </>
 }

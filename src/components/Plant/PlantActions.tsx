@@ -1,6 +1,7 @@
 import React, {MouseEvent} from "react";
 import { PlantEntity } from "types";
 import {Btn} from "../common/Btn";
+import './PlantActions.css';
 
 
 interface Props {
@@ -77,10 +78,12 @@ export const PlantActions = (props: Props) => {
     };
 
     return <>
-        <button onClick={watering}>Water</button>
-        <button onClick={fertilization}>Fertilize</button>
-        <button onClick={removeDust}>Remove Dust</button>
-        <button onClick={deletePlant}>Delete</button>
-        <Btn to={`/edit/${props.plant.id}`} text="Edit"/>
+        <div className="actions">
+            <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
+            <button className="action-water" onClick={watering}>Water</button>
+            <button className="action-fertilize" onClick={fertilization}>Fertilize</button>
+            <button className="action-dust" onClick={removeDust}>Remove Dust</button>
+            <button className="action-delete" onClick={deletePlant}>Delete</button>
+        </div>
         </>
 }

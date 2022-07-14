@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
 import { PlantEntity } from 'types';
+import './AddPlant.css';
 
 
 
@@ -80,93 +81,98 @@ export const AddPlant = () => {
     }
 
     return <>
-        <h2>Add plant to collection</h2>
+        <div className="add">
+            <h2>ADD PLANT TO COLLECTION</h2>
 
-        <form onSubmit={sendForm}>
-            <p>
-                <label>
-                    Image: <br/>
-                    {image.preview && <img src={image.preview} alt={"image"} width='100' height='100' />}
-                    <input
-                        type="file"
-                        name='file'
-                        onChange={handleFileChange}
+            <form className="add-form" onSubmit={sendForm}>
+                <p>
+                    <label>
+                        Image: <br/>
+                        {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
+                        <input
+                            type="file"
+                            name='file'
+                            onChange={handleFileChange}
 
-                    />
-                    {status && <p>{status}</p>}
-                </label>
-            </p>
+                        />
+                        {status && <p>{status}</p>}
+                    </label>
+                </p>
 
-            <p>
-                <label>
-                    Name: <br/>
-                    <input
-                        type="text"
-                        value={form.name}
-                        onChange={e => updateForm('name', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Last watering: <br/>
-                    <input
-                        type="date"
-                        value={form.lastWatering}
-                        onChange={e => updateForm('lastWatering', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Watering period (days): <br/>
-                    <input
-                        type="number"
-                        value={form.wateringPeriod}
-                        onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Last Fertilization: <br/>
-                    <input
-                        type="date"
-                        value={form.lastFertilization}
-                        onChange={e => updateForm('lastFertilization', e.target.value)}
-                    />
-                </label>
-            </p>
+                <p>
+                    <label>
+                        Name: <br/>
+                        <input
+                            type="text"
+                            value={form.name}
+                            onChange={e => updateForm('name', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Last watering: <br/>
+                        <input
+                            type="date"
+                            value={form.lastWatering}
+                            onChange={e => updateForm('lastWatering', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Watering period (days): <br/>
+                        <input
+                            type="number"
+                            min={0}
+                            value={form.wateringPeriod}
+                            onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Last Fertilization: <br/>
+                        <input
+                            type="date"
+                            value={form.lastFertilization}
+                            onChange={e => updateForm('lastFertilization', e.target.value)}
+                        />
+                    </label>
+                </p>
 
-            <p>
-                <label>
-                    Fertilization period (days): <br/>
-                    <input
-                        type="number"
-                        value={form.fertilizationPeriod}
-                        onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Last Dust removal: <br/>
-                    <input
-                        type="date"
-                        value={form.lastDustRemoval}
-                        onChange={e => updateForm('lastDustRemoval', e.target.value)}
-                    />
-                </label>
-            </p>
-            <p>
-                <label>
-                    Quarantine: <br/>
-                    <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
-                </label>
-            </p>
+                <p>
+                    <label>
+                        Fertilization period (days): <br/>
+                        <input
+                            type="number"
+                            min={0}
+                            value={form.fertilizationPeriod}
+                            onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Last Dust removal: <br/>
+                        <input
+                            type="date"
+                            value={form.lastDustRemoval}
+                            onChange={e => updateForm('lastDustRemoval', e.target.value)}
+                        />
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Quarantine: <br/>
+                        <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
+                    </label>
+                </p>
 
-            <button type="submit">Save</button>
-        </form>
-        <Link to="/">Back</Link>
+                <button type="submit">Save</button>
+            </form>
+            <Link className="add-back-btn" to="/">Back</Link>
+        </div>
+
     </>
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import {PlantEntity} from 'types';
 import { PlantTableRow } from "./PlantTableRow";
+import './PlantTable.css'
 
 interface Props {
     plants: PlantEntity[];
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export const PlantTable = (props: Props) => (
-    <table>
+    <table className="plant-table">
         <tbody>
         {
             props.plants.map(plant =>

@@ -1,11 +1,13 @@
 header {
-  background-color: #309f5f;
+  background-color: #41c279;
   padding: 12px;
   color: white;
   display: flex;
   justify-content: space-between;
 }
-
+app {
+  justify-content: center;
+}
 .add-button {
   background-color: #309f5f;
   display: flex;

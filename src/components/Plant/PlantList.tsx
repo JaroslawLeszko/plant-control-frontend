@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {PlantEntity} from 'types';
 import { PlantTable } from "./PlantTable";
+import './PlantList.css';
 
 export const PlantList = () => {
     const [data, setData] = useState<PlantEntity[] | null>(null);
@@ -22,8 +23,8 @@ export const PlantList = () => {
         return <p>Loading...</p>
     }
 
-    return <>
-    <h1>Plants</h1>
+    return <div className="plant-list">
+        <h1>MY PLANTS</h1>
         <PlantTable plants={data} onPlantsChange={refreshPlants}/>
-    </>
+    </div>
 }
