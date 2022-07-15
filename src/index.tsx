@@ -12,6 +12,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
         <App />
+        <footer><a href="http://www.freepik.com">Designed by pikisuperstar / Freepik</a></footer>
     </BrowserRouter>
   </React.StrictMode>
 );
