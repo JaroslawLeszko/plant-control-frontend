@@ -37,9 +37,9 @@ export const PlantTableRow = (props: Props) => {
                 <div className="table-row-info-actions">
                     <div className="table-row-info">
                         <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
-                        <tr>{`Next watering ${daysToWater} days`}</tr>
-                        <tr>{`Next fertilization ${daysToFertilizer} days`}</tr>
-                        <tr>{`Last dust removal ${(new Date(props.plant.lastDustRemoval)).toDateString()}`}</tr>
+                        <tr>{`Next watering: ${daysToWater} days`}</tr>
+                        <tr>{`Next fertilization: ${daysToFertilizer} days`}</tr>
+                        <tr>{`Last dust removal: ${(new Date(props.plant.lastDustRemoval)).toDateString()}`}</tr>
                         <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
                     </div>
 
