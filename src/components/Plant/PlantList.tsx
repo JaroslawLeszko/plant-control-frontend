@@ -13,18 +13,30 @@ export const PlantList = () => {
         setData(result.plantList);
     };
 
-
-
+    // const carePlants = async () => {
+    //     setData(null);
+    //     const res = await fetch(`http://localhost:3001/`);
+    //     const result = await res.json();
+    //     console.log(result);
+    //     setData(result.plantCare);
+    // };
     useEffect(() => {
         refreshPlants();
     }, []);
+
+    // useEffect(() => {
+    //     carePlants();
+    // }, []);
 
     if (data === null) {
         return <p>Loading...</p>
     }
 
     return <div className="plant-list">
-        <h1>MY PLANTS</h1>
-        <PlantTable plants={data} onPlantsChange={refreshPlants}/>
+        <PlantTable
+            plants={data}
+            onPlantsChange={refreshPlants}
+            // onPlantsCare={carePlants}
+        />
     </div>
 }

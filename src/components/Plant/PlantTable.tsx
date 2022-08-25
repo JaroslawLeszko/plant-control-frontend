@@ -6,6 +6,7 @@ import './PlantTable.css'
 interface Props {
     plants: PlantEntity[];
     onPlantsChange: () => void;
+    // onPlantsCare: () => void;
 }
 
 export const PlantTable = (props: Props) => (
@@ -13,7 +14,11 @@ export const PlantTable = (props: Props) => (
         <tbody>
         {
             props.plants.map(plant =>
-                <PlantTableRow plant={plant} key={plant.id} onPlantsChange={props.onPlantsChange}/>
+                <PlantTableRow
+                    plant={plant} key={plant.id}
+                    onPlantsChange={props.onPlantsChange}
+                    // onPlantsCare={props.onPlantsCare}
+                />
             )
         }
         </tbody>
