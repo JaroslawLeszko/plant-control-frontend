@@ -1,15 +1,13 @@
-import React, {MouseEvent, SetStateAction, useEffect, useState} from "react";
+import React, {MouseEvent, SetStateAction, useState} from "react";
 import {PlantEntity} from 'types';
-import {PlantActions} from "./PlantActions";
 import './PlantTableRow.css'
-import './PlantActions.css'
 import {PlantImage} from "./PlantImage";
+import {Btn} from "../common/Btn";
 
 
 interface Props {
     plant: PlantEntity;
     onPlantsChange: () => void;
-    // onPlantsCare: () => void;
 }
 
 export const PlantTableRow = (props: Props) => {
@@ -36,8 +34,6 @@ export const PlantTableRow = (props: Props) => {
                 lastWatering: new Date(),
             }),
         });
-
-        // props.onPlantsChange();
     };
 
     const fertilization = async (event: MouseEvent) => {
@@ -105,6 +101,7 @@ export const PlantTableRow = (props: Props) => {
                     </div>
 
                     <tr className="table-row-actions">
+                        <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
                         <button onClick={watering}>woda</button>
                         <button onClick={fertilization}>nawóz</button>
                         <button onClick={removeDust}>kurz</button>
