@@ -87,6 +87,7 @@ export const PlantTableRow = (props: Props) => {
 
 
     return (
+        <tbody>
         <div>
             <tr className="table-row">
                 <PlantImage plantSrc={props.plant.image}/>
@@ -110,5 +111,6 @@ export const PlantTableRow = (props: Props) => {
                 </div>
             </tr>
         </div>
+        </tbody>
     )
 }

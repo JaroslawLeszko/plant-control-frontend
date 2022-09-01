@@ -17,7 +17,6 @@ export const PlantList = () => {
         refreshPlants();
     }, []);
 
-
     if (data === null) {
         return <p>Loading...</p>
     }
