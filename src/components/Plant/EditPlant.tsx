@@ -1,17 +1,20 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import './EditPlant.css';
+import {Spinner} from "../common/Spinner";
 
 export const EditPlant = () => {
     const [editPlant, setEditPlant] = useState({
         name: '',
-        wateringPeriod: 0,
-        fertilizationPeriod: 0,
+        wateringPeriod: '',
+        fertilizationPeriod: '',
         image: '',
         quarantine: 0,
 
     });
     const {id} = useParams();
+    const [loading, setLoading] = useState<boolean>(false);
+
 
     useEffect(() => {
         (async () => {
@@ -20,9 +23,11 @@ export const EditPlant = () => {
             setEditPlant(result);
         })();
     }, []);
+    console.log(editPlant)
+
 
     if (editPlant === null) {
-        return null
+        return null;
     }
 
     const updatePlant = (key: string, value: any) => {
@@ -35,21 +40,30 @@ export const EditPlant = () => {
     const sendForm = async (event: FormEvent) => {
         event.preventDefault();
 
-        await fetch(`http://localhost:3001/edit/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: editPlant.name,
-                wateringPeriod: editPlant.wateringPeriod,
-                fertilizationPeriod: editPlant.fertilizationPeriod,
-                image: editPlant.image,
-                quarantine: editPlant.quarantine,
-            }),
-        });
+        setLoading(true);
 
+        try {
+            await fetch(`http://localhost:3001/edit/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: editPlant.name,
+                    wateringPeriod: editPlant.wateringPeriod,
+                    fertilizationPeriod: editPlant.fertilizationPeriod,
+                    image: editPlant.image,
+                    quarantine: editPlant.quarantine,
+                }),
+            });
+        } finally {
+            setLoading(false);
+        }
     };
+
+    if (loading) {
+        return <Spinner/>
+    }
 
     return <>
         <div className="edit">
@@ -61,7 +75,7 @@ export const EditPlant = () => {
                         Name: <br/>
                         <input
                             type="text"
-                            value={editPlant.name}
+                            defaultValue={editPlant.name}
                             onChange={e => updatePlant('name', e.target.value)}
                         />
                     </label>
@@ -70,8 +84,9 @@ export const EditPlant = () => {
                     <label>
                         Watering period: <br/>
                         <input
-                            type="text"
-                            value={editPlant.wateringPeriod}
+                            type="number"
+                            min={0}
+                            defaultValue={editPlant.wateringPeriod}
                             onChange={e => updatePlant('wateringPeriod', e.target.value)}
                         />
                     </label>
@@ -80,8 +95,9 @@ export const EditPlant = () => {
                     <label>
                         Fertilization period: <br/>
                         <input
-                            type="text"
-                            value={editPlant.fertilizationPeriod}
+                            type="number"
+                            min={0}
+                            defaultValue={editPlant.fertilizationPeriod}
                             onChange={e => updatePlant('fertilizationPeriod', e.target.value)}
                         />
                     </label>
@@ -91,7 +107,7 @@ export const EditPlant = () => {
                         Image: <br/>
                         <input
                             type="text"
-                            value={editPlant.image}
+                            defaultValue={editPlant.image}
                             onChange={e => updatePlant('image', e.target.value)}
                         />
                     </label>
@@ -101,7 +117,7 @@ export const EditPlant = () => {
                         Quarantine: <br/>
                         <input
                             type="checkbox"
-                            value={editPlant.quarantine}
+                            defaultValue={editPlant.quarantine}
                             onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
                             checked={editPlant.quarantine === 1}
                         />
@@ -112,4 +128,4 @@ export const EditPlant = () => {
             <Link className="edit-back-btn" to="/">Back</Link>
         </div>
     </>
-}
+};

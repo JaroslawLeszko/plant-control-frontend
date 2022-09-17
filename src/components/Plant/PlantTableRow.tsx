@@ -3,7 +3,7 @@ import {PlantEntity} from 'types';
 import './PlantTableRow.css'
 import {PlantImage} from "./PlantImage";
 import {Btn} from "../common/Btn";
-
+import {ProgressBar} from "../common/ProgressBar";
 
 interface Props {
     plant: PlantEntity;
@@ -94,8 +94,10 @@ export const PlantTableRow = (props: Props) => {
                 <div className="table-row-info-actions">
                     <div className="table-row-info">
                         <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
-                        <tr>{`Next watering: ${daysToWater} days`} </tr>
-                        <tr>{`Next fertilization: ${daysToFertilizer} days`} </tr>
+                        <tr>{`Next watering`} </tr>
+                        <ProgressBar filerColor={'#00FFFF'} wateringPeriod={props.plant.wateringPeriod} waterEta={daysToWater}/>
+                        <tr>{`Next fertilization`} </tr>
+                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer} filerColor={'#654940'}/>
                         <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
 
                         <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>

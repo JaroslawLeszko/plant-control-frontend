@@ -1,4 +1,5 @@
 import React, {SetStateAction, useEffect, useState} from "react";
+import './PlantImage.css'
 
 interface Props {
     plantSrc: string | undefined;
@@ -16,8 +17,10 @@ export const PlantImage = (props: Props) => {
 
     useEffect(() => {
         fetchImage();
-    }, []);
+    });
 
-    return <img src={img} alt=""/>
+    return (
+        <img src={img} alt=""/>
+    )
 }
 
