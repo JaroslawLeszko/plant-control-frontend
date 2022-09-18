@@ -1,11 +1,12 @@
+.table {
+    display: table-row;
+    /*width: content-box;*/
+}
 .table-row {
     display: flex;
     margin: 20px;
-    border: groove #868686;
-    /*border-radius: 8px;*/
-    background-color: #498460;
-    box-shadow: black;
-
+    border-radius: 15px;
+    background: linear-gradient(110deg, #68a320 10%, #2b610c 80%);
 }
 
 .table-row-info-actions {
@@ -22,28 +23,28 @@
 }
 
 .table-row-actions {
+    margin: 10px;
     display: grid;
     width: 100px;
 
 }
 
 .item-name {
-    /*padding: 10px;*/
-    /*margin: 10px;*/
-    /*text-align: match-parent;*/
     font-size: 20px;
     font-weight: bold;
 }
 
 .quarantine {
+    margin-top: 10px;
     font-weight: bold;
     color: #000000;
-    background-color: #ff0000;
+    background-color: #cc3232;
     text-align: center;
+    border-radius: 50px;
 }
 
 .btn {
-    background: #498460;
+    background: none;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
@@ -52,6 +53,32 @@
 }
 
 button {
-    background: #498460;
+    background: #2b610c;
     margin: 2px;
+    cursor: pointer;
+    border-color: #1d4608;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.waterBtn:hover {
+    color: white;
+    background-color: #a8bcce;
+}
+
+.fertilizeBtn:hover {
+    color: white;
+    background-color: #83603c;
+}
+
+.dustBtn:hover {
+    color: white;
+    background-color: #9b9999;
+}
+
+.deleteBtn {
+    font-weight: bold;
+    font-size: large;
+    border: none;
 }

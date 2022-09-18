@@ -1,5 +1,4 @@
 import React from "react";
-import './ProgressBar.css';
 
 interface Props {
     wateringPeriod: number;
@@ -16,7 +15,6 @@ export const ProgressBar = (props: Props) => {
         width: '50%',
         backgroundColor: "#e0e0de",
         borderRadius: 50,
-        margin: 10
     }
 
     const fillerStyles = {
@@ -24,13 +22,13 @@ export const ProgressBar = (props: Props) => {
         width: `${progress}%`,
         backgroundColor: props.filerColor,
         borderRadius: 50,
-        // textAlign: 'right',
     }
 
     const labelStyles = {
         padding: 10,
         color: 'black',
         fontWeight: 'bold',
+        whiteSpace: 'nowrap' as 'nowrap',
     }
 
     return (

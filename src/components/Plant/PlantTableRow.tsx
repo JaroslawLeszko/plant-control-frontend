@@ -88,16 +88,16 @@ export const PlantTableRow = (props: Props) => {
 
     return (
         <tbody>
-        <div>
+        <div className="table">
             <tr className="table-row">
                 <PlantImage plantSrc={props.plant.image}/>
                 <div className="table-row-info-actions">
                     <div className="table-row-info">
                         <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
                         <tr>{`Next watering`} </tr>
-                        <ProgressBar filerColor={'#00FFFF'} wateringPeriod={props.plant.wateringPeriod} waterEta={daysToWater}/>
+                        <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod} waterEta={daysToWater}/>
                         <tr>{`Next fertilization`} </tr>
-                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer} filerColor={'#654940'}/>
+                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer} filerColor={'#83603c'}/>
                         <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
 
                         <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
@@ -105,10 +105,10 @@ export const PlantTableRow = (props: Props) => {
 
                     <tr className="table-row-actions">
                         <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
-                        <button onClick={watering}>woda</button>
-                        <button onClick={fertilization}>nawóz</button>
-                        <button onClick={removeDust}>kurz</button>
-                        <button onClick={deletePlant}>usuń</button>
+                        <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
+                        <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE</button>
+                        <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
+                        <button className="deleteBtn" onClick={deletePlant} title="delete plant" >❌</button>
                     </tr>
                 </div>
             </tr>

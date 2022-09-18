@@ -1,7 +1,8 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, SetStateAction, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import './EditPlant.css';
 import {Spinner} from "../common/Spinner";
+
 
 export const EditPlant = () => {
     const [editPlant, setEditPlant] = useState({
@@ -14,6 +15,8 @@ export const EditPlant = () => {
     });
     const {id} = useParams();
     const [loading, setLoading] = useState<boolean>(false);
+    const [image, setImage] = useState({preview: '', data: ''});
+    const [status, setStatus] = useState('');
 
 
     useEffect(() => {
@@ -30,6 +33,8 @@ export const EditPlant = () => {
         return null;
     }
 
+
+
     const updatePlant = (key: string, value: any) => {
         setEditPlant(editPlant => ({
             ...editPlant,
@@ -37,13 +42,29 @@ export const EditPlant = () => {
         }));
     };
 
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+
+        const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+        }
+        setImage(img as SetStateAction<any>);
+        const filePath = e.target.files[0].name
+        setEditPlant(editPlant => ({
+            ...editPlant,
+            image: filePath,
+        }));
+
+    }
+
     const sendForm = async (event: FormEvent) => {
         event.preventDefault();
 
         setLoading(true);
 
         try {
-            await fetch(`http://localhost:3001/edit/${id}`, {
+            const res = await fetch(`http://localhost:3001/edit/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,6 +77,17 @@ export const EditPlant = () => {
                     quarantine: editPlant.quarantine,
                 }),
             });
+
+            const formData = new FormData()
+            formData.append('file', image.data)
+            const response = await fetch(`http://localhost:3001/add/image`, {
+                method: "POST",
+                body: formData,
+
+            })
+            if (response) setStatus(response.statusText);
+            await res.json();
+
         } finally {
             setLoading(false);
         }
@@ -75,6 +107,8 @@ export const EditPlant = () => {
                         Name: <br/>
                         <input
                             type="text"
+                            minLength={3}
+                            maxLength={50}
                             defaultValue={editPlant.name}
                             onChange={e => updatePlant('name', e.target.value)}
                         />
@@ -105,11 +139,15 @@ export const EditPlant = () => {
                 <p>
                     <label>
                         Image: <br/>
+                        {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
                         <input
-                            type="text"
-                            defaultValue={editPlant.image}
-                            onChange={e => updatePlant('image', e.target.value)}
+                            type="file"
+                            name='file'
+                            // value={editPlant.image}
+                            onChange={handleFileChange}
+
                         />
+                        {status && <p>{status}</p>}
                     </label>
                 </p>
                 <p>

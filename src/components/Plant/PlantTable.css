@@ -11,6 +11,7 @@
       margin-inside: 5rem;
       font-size: 1.2rem;
       gap: 5px;
+     /*color: white;*/
   }
 .pagination .page-num {
       padding: 8px 15px;
@@ -20,10 +21,10 @@
   }
 
 .pagination .page-num:hover {
-      background-color: #498460;
+      background-color: #2b610c;
       color: white;
   }
 
 .pagination .active {
-      background-color: #498460;
+      background-color: #2b610c;
   }

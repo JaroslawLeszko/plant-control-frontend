@@ -87,7 +87,7 @@ export const AddPlant = () => {
                 <p>
                     <label>
                         Image: <br/>
-                        {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
+                        {image.preview && <img src={image.preview} alt={"image"} width='512' height='512' />}
                         <input
                             type="file"
                             name='file'
@@ -103,8 +103,11 @@ export const AddPlant = () => {
                         Name: <br/>
                         <input
                             type="text"
+                            minLength={3}
+                            maxLength={50}
                             defaultValue={form.name}
                             onChange={e => updateForm('name', e.target.value)}
+
                         />
                     </label>
                 </p>
