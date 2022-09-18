@@ -5,7 +5,7 @@
 
 .add-form {
     width: 500px;
-    margin: 50px auto;
+    margin: 40px auto;
 }
 
 .add-form label {
@@ -27,29 +27,26 @@
 
 
 .add-form button {
-    border: 0;
-    background: #498460;
+    border: none;
+    background: #2b610c;
     color: white;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.8rem;
-    padding: 1px 35px;
-    border-radius: 2px;
-    line-height: 22px;
+    font-size: 12px;
+    padding: 5px 35px;
+    border-radius: 15px;
     text-decoration: none;
 }
 
 .add-back-btn {
-    border: 0;
-    background: #498460;
-    color: #ffffff;
+    background: #2b610c;
+    color: white;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.8rem;
-    padding: 1px 35px;
-    border-radius: 2px;
-    line-height: 22px;
+    font-size: 14px;
+    padding: 4px 35px;
+    border-radius: 15px;
     text-decoration: none;
 }

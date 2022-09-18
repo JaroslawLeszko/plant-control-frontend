@@ -1,17 +1,23 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, SetStateAction, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import './EditPlant.css';
+import {Spinner} from "../common/Spinner";
+
 
 export const EditPlant = () => {
     const [editPlant, setEditPlant] = useState({
         name: '',
-        wateringPeriod: 0,
-        fertilizationPeriod: 0,
+        wateringPeriod: '',
+        fertilizationPeriod: '',
         image: '',
         quarantine: 0,
 
     });
     const {id} = useParams();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [image, setImage] = useState({preview: '', data: ''});
+    const [status, setStatus] = useState('');
+
 
     useEffect(() => {
         (async () => {
@@ -20,10 +26,14 @@ export const EditPlant = () => {
             setEditPlant(result);
         })();
     }, []);
+    console.log(editPlant)
+
 
     if (editPlant === null) {
-        return null
+        return null;
     }
+
+
 
     const updatePlant = (key: string, value: any) => {
         setEditPlant(editPlant => ({
@@ -32,24 +42,60 @@ export const EditPlant = () => {
         }));
     };
 
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+
+        const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+        }
+        setImage(img as SetStateAction<any>);
+        const filePath = e.target.files[0].name
+        setEditPlant(editPlant => ({
+            ...editPlant,
+            image: filePath,
+        }));
+
+    }
+
     const sendForm = async (event: FormEvent) => {
         event.preventDefault();
 
-        await fetch(`http://localhost:3001/edit/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: editPlant.name,
-                wateringPeriod: editPlant.wateringPeriod,
-                fertilizationPeriod: editPlant.fertilizationPeriod,
-                image: editPlant.image,
-                quarantine: editPlant.quarantine,
-            }),
-        });
+        setLoading(true);
 
+        try {
+            const res = await fetch(`http://localhost:3001/edit/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: editPlant.name,
+                    wateringPeriod: editPlant.wateringPeriod,
+                    fertilizationPeriod: editPlant.fertilizationPeriod,
+                    image: editPlant.image,
+                    quarantine: editPlant.quarantine,
+                }),
+            });
+
+            const formData = new FormData()
+            formData.append('file', image.data)
+            const response = await fetch(`http://localhost:3001/add/image`, {
+                method: "POST",
+                body: formData,
+
+            })
+            if (response) setStatus(response.statusText);
+            await res.json();
+
+        } finally {
+            setLoading(false);
+        }
     };
+
+    if (loading) {
+        return <Spinner/>
+    }
 
     return <>
         <div className="edit">
@@ -61,7 +107,9 @@ export const EditPlant = () => {
                         Name: <br/>
                         <input
                             type="text"
-                            value={editPlant.name}
+                            minLength={3}
+                            maxLength={50}
+                            defaultValue={editPlant.name}
                             onChange={e => updatePlant('name', e.target.value)}
                         />
                     </label>
@@ -70,8 +118,9 @@ export const EditPlant = () => {
                     <label>
                         Watering period: <br/>
                         <input
-                            type="text"
-                            value={editPlant.wateringPeriod}
+                            type="number"
+                            min={0}
+                            defaultValue={editPlant.wateringPeriod}
                             onChange={e => updatePlant('wateringPeriod', e.target.value)}
                         />
                     </label>
@@ -80,8 +129,9 @@ export const EditPlant = () => {
                     <label>
                         Fertilization period: <br/>
                         <input
-                            type="text"
-                            value={editPlant.fertilizationPeriod}
+                            type="number"
+                            min={0}
+                            defaultValue={editPlant.fertilizationPeriod}
                             onChange={e => updatePlant('fertilizationPeriod', e.target.value)}
                         />
                     </label>
@@ -89,11 +139,15 @@ export const EditPlant = () => {
                 <p>
                     <label>
                         Image: <br/>
+                        {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
                         <input
-                            type="text"
-                            value={editPlant.image}
-                            onChange={e => updatePlant('image', e.target.value)}
+                            type="file"
+                            name='file'
+                            // value={editPlant.image}
+                            onChange={handleFileChange}
+
                         />
+                        {status && <p>{status}</p>}
                     </label>
                 </p>
                 <p>
@@ -101,7 +155,7 @@ export const EditPlant = () => {
                         Quarantine: <br/>
                         <input
                             type="checkbox"
-                            value={editPlant.quarantine}
+                            defaultValue={editPlant.quarantine}
                             onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
                             checked={editPlant.quarantine === 1}
                         />
@@ -112,4 +166,4 @@ export const EditPlant = () => {
             <Link className="edit-back-btn" to="/">Back</Link>
         </div>
     </>
-}
+};

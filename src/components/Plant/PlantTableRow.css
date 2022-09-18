@@ -1,49 +1,84 @@
+.table {
+    display: table-row;
+    /*width: content-box;*/
+}
 .table-row {
     display: flex;
-    justify-content: flex-start;
     margin: 20px;
-    border: groove #868686;
-    border-radius: 8px;
-    background-color: #498460;
-
+    border-radius: 15px;
+    background: linear-gradient(110deg, #68a320 10%, #2b610c 80%);
 }
 
 .table-row-info-actions {
     display: flex;
-    align-items: stretch;
 }
 
 .table-row-info {
-    justify-content: center;
-    align-items: center;
-    margin: 30px auto;
-    padding: 20px;
+    display: grid;
+    width: 300px;
+    text-align: left;
+    align-items: flex-start;
+    margin: 20px;
+    padding: 10px;
 }
 
 .table-row-actions {
-    display: flex;
-
-}
-
-img {
     margin: 10px;
-    justify-content: start;
-    border-radius: 8px;
-    max-width: 150px;
-    height: auto;
+    display: grid;
+    width: 100px;
+
 }
 
 .item-name {
-    padding: 50px;
-    margin: 20px;
-    text-align: match-parent;
     font-size: 20px;
     font-weight: bold;
 }
 
 .quarantine {
+    margin-top: 10px;
     font-weight: bold;
     color: #000000;
-    background-color: #ff0000;
+    background-color: #cc3232;
     text-align: center;
+    border-radius: 50px;
+}
+
+.btn {
+    background: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 5px;
+    text-decoration: none;
+}
+
+button {
+    background: #2b610c;
+    margin: 2px;
+    cursor: pointer;
+    border-color: #1d4608;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.waterBtn:hover {
+    color: white;
+    background-color: #a8bcce;
+}
+
+.fertilizeBtn:hover {
+    color: white;
+    background-color: #83603c;
+}
+
+.dustBtn:hover {
+    color: white;
+    background-color: #9b9999;
+}
+
+.deleteBtn {
+    font-weight: bold;
+    font-size: large;
+    border: none;
 }

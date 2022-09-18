@@ -17,6 +17,7 @@ function App() {
             <Route path="/add" element={<AddPlant/>}/>
             <Route path="/edit/:id" element={<EditPlant/>}/>
         </Routes>
+        <a href="http://www.freepik.com">Designed by pikisuperstar / Freepik</a>
     </>
   );
 }

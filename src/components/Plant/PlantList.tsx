@@ -13,8 +13,6 @@ export const PlantList = () => {
         setData(result.plantList);
     };
 
-
-
     useEffect(() => {
         refreshPlants();
     }, []);
@@ -24,7 +22,9 @@ export const PlantList = () => {
     }
 
     return <div className="plant-list">
-        <h1>MY PLANTS</h1>
-        <PlantTable plants={data} onPlantsChange={refreshPlants}/>
+        <PlantTable
+            plants={data}
+            onPlantsChange={refreshPlants}
+        />
     </div>
 }

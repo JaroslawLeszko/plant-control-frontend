@@ -1,6 +1,5 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
-import { PlantEntity } from 'types';
 import './AddPlant.css';
 
 
@@ -47,8 +46,8 @@ export const AddPlant = () => {
         }));
 
     }
-    const sendForm = async (e: FormEvent) => {
-        e.preventDefault();
+    const sendForm = async (event: FormEvent) => {
+        event.preventDefault();
 
         setLoading(true);
 
@@ -69,7 +68,7 @@ export const AddPlant = () => {
 
             })
             if (response) setStatus(response.statusText);
-            const data: PlantEntity = await res.json();
+            await res.json();
         } finally {
             setLoading(false);
         }
@@ -88,7 +87,7 @@ export const AddPlant = () => {
                 <p>
                     <label>
                         Image: <br/>
-                        {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
+                        {image.preview && <img src={image.preview} alt={"image"} width='512' height='512' />}
                         <input
                             type="file"
                             name='file'
@@ -104,8 +103,11 @@ export const AddPlant = () => {
                         Name: <br/>
                         <input
                             type="text"
-                            value={form.name}
+                            minLength={3}
+                            maxLength={50}
+                            defaultValue={form.name}
                             onChange={e => updateForm('name', e.target.value)}
+
                         />
                     </label>
                 </p>
@@ -114,7 +116,7 @@ export const AddPlant = () => {
                         Last watering: <br/>
                         <input
                             type="date"
-                            value={form.lastWatering}
+                            defaultValue={form.lastWatering}
                             onChange={e => updateForm('lastWatering', e.target.value)}
                         />
                     </label>
@@ -125,7 +127,7 @@ export const AddPlant = () => {
                         <input
                             type="number"
                             min={0}
-                            value={form.wateringPeriod}
+                            defaultValue={form.wateringPeriod}
                             onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
                         />
                     </label>
@@ -135,7 +137,7 @@ export const AddPlant = () => {
                         Last Fertilization: <br/>
                         <input
                             type="date"
-                            value={form.lastFertilization}
+                            defaultValue={form.lastFertilization}
                             onChange={e => updateForm('lastFertilization', e.target.value)}
                         />
                     </label>
@@ -147,7 +149,7 @@ export const AddPlant = () => {
                         <input
                             type="number"
                             min={0}
-                            value={form.fertilizationPeriod}
+                            defaultValue={form.fertilizationPeriod}
                             onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
                         />
                     </label>
@@ -157,7 +159,7 @@ export const AddPlant = () => {
                         Last Dust removal: <br/>
                         <input
                             type="date"
-                            value={form.lastDustRemoval}
+                            defaultValue={form.lastDustRemoval}
                             onChange={e => updateForm('lastDustRemoval', e.target.value)}
                         />
                     </label>
@@ -165,7 +167,9 @@ export const AddPlant = () => {
                 <p>
                     <label>
                         Quarantine: <br/>
-                        <input type="checkbox" onClick={e => updateForm('quarantine', 1)}/>
+                        <input
+                            type="checkbox"
+                            onClick={e => updateForm('quarantine', 1)}/>
                     </label>
                 </p>
 
@@ -173,6 +177,5 @@ export const AddPlant = () => {
             </form>
             <Link className="add-back-btn" to="/">Back</Link>
         </div>
-
     </>
 };

@@ -1,0 +1,7 @@
+img {
+    margin: 10px;
+    justify-content: start;
+    border-radius: 5px;
+    max-width: 175px;
+    height: 250px;
+}
