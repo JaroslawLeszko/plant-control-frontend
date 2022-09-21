@@ -26,14 +26,11 @@ export const EditPlant = () => {
             setEditPlant(result);
         })();
     }, []);
-    console.log(editPlant)
 
 
     if (editPlant === null) {
         return null;
     }
-
-
 
     const updatePlant = (key: string, value: any) => {
         setEditPlant(editPlant => ({
@@ -143,7 +140,6 @@ export const EditPlant = () => {
                         <input
                             type="file"
                             name='file'
-                            // value={editPlant.image}
                             onChange={handleFileChange}
 
                         />

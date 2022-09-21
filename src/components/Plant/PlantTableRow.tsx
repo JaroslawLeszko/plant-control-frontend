@@ -87,32 +87,37 @@ export const PlantTableRow = (props: Props) => {
 
 
     return (
-        <tbody>
-        <div className="table">
-            <tr className="table-row">
-                <PlantImage plantSrc={props.plant.image}/>
-                <div className="table-row-info-actions">
-                    <div className="table-row-info">
-                        <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
-                        <tr>{`Next watering`} </tr>
-                        <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod} waterEta={daysToWater}/>
-                        <tr>{`Next fertilization`} </tr>
-                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer} filerColor={'#83603c'}/>
-                        <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
+        <table>
+            <tbody>
+            <div className="table">
+                <tr className="table-row">
+                    <PlantImage plantSrc={props.plant.image}/>
+                    <div className="table-row-info-actions">
+                        <div className="table-row-info">
+                            <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
+                            <tr>{`Next watering`}</tr>
+                            <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod}
+                                         waterEta={daysToWater}/>
+                            <tr>{`Next fertilization`}</tr>
+                            <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer}
+                                         filerColor={'#83603c'}/>
+                            <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
 
-                        <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
+                            <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
+                        </div>
+
+                        <tr className="table-row-actions">
+                            <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
+                            <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
+                            <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE
+                            </button>
+                            <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
+                            <button className="deleteBtn" onClick={deletePlant} title="delete plant">❌</button>
+                        </tr>
                     </div>
-
-                    <tr className="table-row-actions">
-                        <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
-                        <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
-                        <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE</button>
-                        <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
-                        <button className="deleteBtn" onClick={deletePlant} title="delete plant" >❌</button>
-                    </tr>
-                </div>
-            </tr>
-        </div>
-        </tbody>
+                </tr>
+            </div>
+            </tbody>
+        </table>
     )
 }
