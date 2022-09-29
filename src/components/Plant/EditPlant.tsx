@@ -1,7 +1,8 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import './EditPlant.css';
+import {apiUrl} from "../../config/api";
 import {Spinner} from "../common/Spinner";
+import './EditPlant.css';
 
 
 export const EditPlant = () => {
@@ -21,7 +22,7 @@ export const EditPlant = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3001/${id}`);
+            const res = await fetch(`${apiUrl}/${id}`);
             const result = await res.json();
             setEditPlant(result);
         })();
@@ -61,7 +62,7 @@ export const EditPlant = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:3001/edit/${id}`, {
+            const res = await fetch(`${apiUrl}/edit/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ export const EditPlant = () => {
 
             const formData = new FormData()
             formData.append('file', image.data)
-            const response = await fetch(`http://localhost:3001/add/image`, {
+            const response = await fetch(`${apiUrl}/add/image`, {
                 method: "POST",
                 body: formData,
 

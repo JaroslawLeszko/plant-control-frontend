@@ -1,9 +1,10 @@
 import React, {MouseEvent, SetStateAction, useState} from "react";
+import {apiUrl} from "../../config/api";
 import {PlantEntity} from 'types';
-import './PlantTableRow.css'
 import {PlantImage} from "./PlantImage";
 import {Btn} from "../common/Btn";
 import {ProgressBar} from "../common/ProgressBar";
+import './PlantTableRow.css'
 
 interface Props {
     plant: PlantEntity;
@@ -21,11 +22,12 @@ export const PlantTableRow = (props: Props) => {
     const fertilizerEta = Date.parse(String(fertilize)) + ((props.plant.fertilizationPeriod + 1) * 1000 * 60 * 60 * 24) - Date.now();
     const daysToFertilizer = fertilizerEta > 0 ? Math.floor(fertilizerEta / (1000 * 60 * 60 * 24)) : 0;
 
+
     const watering = async (event: MouseEvent) => {
         event.preventDefault();
         setWater(new Date() as SetStateAction<any>);
 
-        await fetch(`http://localhost:3001/water/${props.plant.id}`, {
+        await fetch(`${apiUrl}/water/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export const PlantTableRow = (props: Props) => {
         event.preventDefault();
         setFertilize(new Date() as SetStateAction<any>);
 
-        await fetch(`http://localhost:3001/fertilize/${props.plant.id}`, {
+        await fetch(`${apiUrl}/fertilize/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ export const PlantTableRow = (props: Props) => {
         event.preventDefault();
         setDust(new Date() as SetStateAction<any>)
 
-        await fetch(`http://localhost:3001/dust/${props.plant.id}`, {
+        await fetch(`${apiUrl}/dust/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +74,7 @@ export const PlantTableRow = (props: Props) => {
             return;
         }
 
-        const res = await fetch(`http://localhost:3001/${props.plant.id}`, {
+        const res = await fetch(`${apiUrl}/${props.plant.id}`, {
             method: 'DELETE',
         });
 

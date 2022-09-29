@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
 import './AddPlant.css';
+import {apiUrl} from "../../config/api";
 
 
 
@@ -52,7 +53,7 @@ export const AddPlant = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:3001/`, {
+            const res = await fetch(`${apiUrl}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export const AddPlant = () => {
 
             const formData = new FormData()
             formData.append('file', image.data)
-            const response = await fetch(`http://localhost:3001/add/image`, {
+            const response = await fetch(`${apiUrl}/add/image`, {
                 method: "POST",
                 body: formData,
 
