@@ -117,6 +117,7 @@ export const AddPlant = () => {
                         Last watering: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastWatering}
                             onChange={e => updateForm('lastWatering', e.target.value)}
                         />
@@ -138,6 +139,7 @@ export const AddPlant = () => {
                         Last Fertilization: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastFertilization}
                             onChange={e => updateForm('lastFertilization', e.target.value)}
                         />
@@ -160,6 +162,7 @@ export const AddPlant = () => {
                         Last Dust removal: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastDustRemoval}
                             onChange={e => updateForm('lastDustRemoval', e.target.value)}
                         />
