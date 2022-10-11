@@ -83,7 +83,6 @@ export const PlantTableRow = (props: Props) => {
             alert(`Error occurred: ${error.message}`);
             return;
         }
-
         props.onPlantsChange();
     };
 

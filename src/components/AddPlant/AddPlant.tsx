@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
-import './AddPlant.css';
 import {apiUrl} from "../../config/api";
+import './AddPlant.css';
 
 
 
@@ -53,7 +53,7 @@ export const AddPlant = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`${apiUrl}/`, {
+            await fetch(`${apiUrl}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const AddPlant = () => {
 
             })
             if (response) setStatus(response.statusText);
-            await res.json();
+
         } finally {
             setLoading(false);
         }
@@ -177,7 +177,7 @@ export const AddPlant = () => {
                     </label>
                 </p>
 
-                <button type="submit">Save</button>
+                <button className="add-form-button" type="submit">Save</button>
             </form>
             <Link className="add-back-btn" to="/">Back</Link>
         </div>
