@@ -1,5 +1,6 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
 import {Link} from "react-router-dom";
+import {apiUrl} from "../../config/api";
 import './AddPlant.css';
 
 
@@ -52,7 +53,7 @@ export const AddPlant = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:3001/`, {
+            await fetch(`${apiUrl}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,13 +63,13 @@ export const AddPlant = () => {
 
             const formData = new FormData()
             formData.append('file', image.data)
-            const response = await fetch(`http://localhost:3001/add/image`, {
+            const response = await fetch(`${apiUrl}/add/image`, {
                 method: "POST",
                 body: formData,
 
             })
             if (response) setStatus(response.statusText);
-            await res.json();
+
         } finally {
             setLoading(false);
         }
@@ -116,6 +117,7 @@ export const AddPlant = () => {
                         Last watering: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastWatering}
                             onChange={e => updateForm('lastWatering', e.target.value)}
                         />
@@ -137,6 +139,7 @@ export const AddPlant = () => {
                         Last Fertilization: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastFertilization}
                             onChange={e => updateForm('lastFertilization', e.target.value)}
                         />
@@ -159,6 +162,7 @@ export const AddPlant = () => {
                         Last Dust removal: <br/>
                         <input
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             defaultValue={form.lastDustRemoval}
                             onChange={e => updateForm('lastDustRemoval', e.target.value)}
                         />
@@ -173,7 +177,7 @@ export const AddPlant = () => {
                     </label>
                 </p>
 
-                <button type="submit">Save</button>
+                <button className="add-form-button" type="submit">Save</button>
             </form>
             <Link className="add-back-btn" to="/">Back</Link>
         </div>

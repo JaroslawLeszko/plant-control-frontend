@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {PlantEntity} from 'types';
 import { PlantTable } from "./PlantTable";
+import {apiUrl} from "../../config/api";
 import './PlantList.css';
 
 export const PlantList = () => {
@@ -8,7 +9,7 @@ export const PlantList = () => {
 
     const refreshPlants = async () => {
         setData(null);
-        const res = await fetch(`http://localhost:3001/`);
+        const res = await fetch(`${apiUrl}/`);
         const result = await res.json();
         setData(result.plantList);
     };

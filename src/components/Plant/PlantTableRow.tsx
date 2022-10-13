@@ -1,9 +1,10 @@
 import React, {MouseEvent, SetStateAction, useState} from "react";
+import {apiUrl} from "../../config/api";
 import {PlantEntity} from 'types';
-import './PlantTableRow.css'
 import {PlantImage} from "./PlantImage";
 import {Btn} from "../common/Btn";
 import {ProgressBar} from "../common/ProgressBar";
+import './PlantTableRow.css'
 
 interface Props {
     plant: PlantEntity;
@@ -21,11 +22,12 @@ export const PlantTableRow = (props: Props) => {
     const fertilizerEta = Date.parse(String(fertilize)) + ((props.plant.fertilizationPeriod + 1) * 1000 * 60 * 60 * 24) - Date.now();
     const daysToFertilizer = fertilizerEta > 0 ? Math.floor(fertilizerEta / (1000 * 60 * 60 * 24)) : 0;
 
+
     const watering = async (event: MouseEvent) => {
         event.preventDefault();
         setWater(new Date() as SetStateAction<any>);
 
-        await fetch(`http://localhost:3001/water/${props.plant.id}`, {
+        await fetch(`${apiUrl}/water/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export const PlantTableRow = (props: Props) => {
         event.preventDefault();
         setFertilize(new Date() as SetStateAction<any>);
 
-        await fetch(`http://localhost:3001/fertilize/${props.plant.id}`, {
+        await fetch(`${apiUrl}/fertilize/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ export const PlantTableRow = (props: Props) => {
         event.preventDefault();
         setDust(new Date() as SetStateAction<any>)
 
-        await fetch(`http://localhost:3001/dust/${props.plant.id}`, {
+        await fetch(`${apiUrl}/dust/${props.plant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +74,7 @@ export const PlantTableRow = (props: Props) => {
             return;
         }
 
-        const res = await fetch(`http://localhost:3001/${props.plant.id}`, {
+        const res = await fetch(`${apiUrl}/${props.plant.id}`, {
             method: 'DELETE',
         });
 
@@ -81,38 +83,42 @@ export const PlantTableRow = (props: Props) => {
             alert(`Error occurred: ${error.message}`);
             return;
         }
-
         props.onPlantsChange();
     };
 
 
     return (
-        <tbody>
-        <div className="table">
-            <tr className="table-row">
-                <PlantImage plantSrc={props.plant.image}/>
-                <div className="table-row-info-actions">
-                    <div className="table-row-info">
-                        <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
-                        <tr>{`Next watering`} </tr>
-                        <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod} waterEta={daysToWater}/>
-                        <tr>{`Next fertilization`} </tr>
-                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer} filerColor={'#83603c'}/>
-                        <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
+        <table>
+            <tbody>
+            <div className="table">
+                <tr className="table-row">
+                    <PlantImage plantSrc={props.plant.image}/>
+                    <div className="table-row-info-actions">
+                        <div className="table-row-info">
+                            <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
+                            <tr>{`Next watering`}</tr>
+                            <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod}
+                                         waterEta={daysToWater}/>
+                            <tr>{`Next fertilization`}</tr>
+                            <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer}
+                                         filerColor={'#83603c'}/>
+                            <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
 
-                        <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
+                            <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
+                        </div>
+
+                        <tr className="table-row-actions">
+                            <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
+                            <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
+                            <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE
+                            </button>
+                            <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
+                            <button className="deleteBtn" onClick={deletePlant} title="delete plant">❌</button>
+                        </tr>
                     </div>
-
-                    <tr className="table-row-actions">
-                        <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
-                        <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
-                        <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE</button>
-                        <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
-                        <button className="deleteBtn" onClick={deletePlant} title="delete plant" >❌</button>
-                    </tr>
-                </div>
-            </tr>
-        </div>
-        </tbody>
+                </tr>
+            </div>
+            </tbody>
+        </table>
     )
 }
