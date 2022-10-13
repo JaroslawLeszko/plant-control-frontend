@@ -13,7 +13,7 @@ Screenshosts
 ![Edit](https://user-images.githubusercontent.com/56537814/195659695-18c13274-86f6-4bc9-b4dd-87ebfdcfd2a7.jpg)
 
 ## Tech Stack
-https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+![image]({https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB})
 
 - [React](https://reactjs.org/) 
 - [TypeScript](https://www.typescriptlang.org/)
