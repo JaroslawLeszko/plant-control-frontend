@@ -4,17 +4,19 @@
 
 Plant Control is an application to control the cultivation of house plants, taking care of watering, fertilizing, health and cleanliness.
 
+## [View live demo](https://jleszko.networkmanager.pl/)
+
 Screenshosts
 
-![Main](https://user-images.githubusercontent.com/56537814/179187362-1fd4e7bc-d2e0-4aa9-9520-76d1050e8ef7.jpg)
-![Add](https://user-images.githubusercontent.com/56537814/179187375-648ed690-c8c1-4aea-80df-e2ad0a5763db.jpg)
-![Edit](https://user-images.githubusercontent.com/56537814/179187408-656dac82-720e-484e-8400-b70bdb45c9ce.jpg)
+![Main](https://user-images.githubusercontent.com/56537814/195659628-51a35b7d-cf7a-4e0e-96de-ed9ad59c6f05.jpg)
+![Add](https://user-images.githubusercontent.com/56537814/195659672-3526289e-49bf-4d5c-8f71-66de3ecf7fc7.jpg)
+![Edit](https://user-images.githubusercontent.com/56537814/195659695-18c13274-86f6-4bc9-b4dd-87ebfdcfd2a7.jpg)
 
+## Tech Stack
+https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 
-Tech Stack:
-- React
-- Typescript
-- Multer
+- [React](https://reactjs.org/) 
+- [TypeScript](https://www.typescriptlang.org/)
 
 Rozwój aplikacji:
 
