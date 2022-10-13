@@ -13,10 +13,17 @@ Screenshosts
 ![Edit](https://user-images.githubusercontent.com/56537814/195659695-18c13274-86f6-4bc9-b4dd-87ebfdcfd2a7.jpg)
 
 ## Tech Stack
-![image]({https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB})
 
-- [React](https://reactjs.org/) 
-- [TypeScript](https://www.typescriptlang.org/)
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /> 
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+
+## Getting Started
+### Prerequisites
+This project uses NPM as package manager
+### Installation
+```
+npm install
+```
 
 Rozwój aplikacji:
 
