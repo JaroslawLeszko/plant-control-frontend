@@ -1,6 +1,8 @@
-# PLANTCONTROL
+# PLANT CONTROL
 
-Plant Control to aplikacja do kontrolowania uprawy roślin, dbanie o podlewanie, nawożenie i czystość.
+## About the project
+
+Plant Control is an application to control the cultivation of house plants, taking care of watering, fertilizing, health and cleanliness.
 
 Screens:
 
