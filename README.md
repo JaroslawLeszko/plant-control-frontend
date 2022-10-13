@@ -4,7 +4,7 @@
 
 Plant Control is an application to control the cultivation of house plants, taking care of watering, fertilizing, health and cleanliness.
 
-Screens:
+Screenshosts
 
 ![Main](https://user-images.githubusercontent.com/56537814/179187362-1fd4e7bc-d2e0-4aa9-9520-76d1050e8ef7.jpg)
 ![Add](https://user-images.githubusercontent.com/56537814/179187375-648ed690-c8c1-4aea-80df-e2ad0a5763db.jpg)
