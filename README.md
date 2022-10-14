@@ -20,15 +20,41 @@ Screenshosts
 ## Getting Started
 ### Prerequisites
 This project uses NPM as package manager
-### Installation
+### Run Locally
+Clone the repository
+```
+git clone https://github.com/JaroslawLeszko/plant-control-frontend.git
+```
+Go to the project directory
+```
+cd plant-control-frontend
+```
+Inastall dependencies
 ```
 npm install
 ```
+Start the server
+```
+react-app-rewired start
+```
 
-Rozwój aplikacji:
+### Roadmap
+- [x] deployment
+- [ ] add searching
+- [ ] add logging
+- [ ] add view with detailed information about plant
+- [ ] improvement in appearance and layout
 
-- dodanie wyszukiwarki
-- dodanie panelu logowania
-- poprawa stylowania CSS
-- wyelyminowanie wczytywania z każdym razem zdjęć, przechowanie ich w pamięci podrecznej. Po wciśnieciu przyciusku funkcyjnego (np. podlewania) aktualizuje się baza danych i od nowa wczytuje dane. Miedzy innymi zdjęcia przez co proces nie jest płyny i zauważalny.
-- deployment
+### Backend Repository
+https://github.com/JaroslawLeszko/plant-control-backend.git
+
+### Contact
+Jarosław Leszko
+
+email: jaroslawleszko@gmail.com
+
+linkedin: www.linkedin.com/in/jarosław-leszko
+
+
+
+
