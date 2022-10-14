@@ -1,4 +1,4 @@
-# PLANT CONTROL
+# PLANT CONTROL (FE)
 
 ## About the project
 
