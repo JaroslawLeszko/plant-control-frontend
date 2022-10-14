@@ -42,6 +42,7 @@ react-app-rewired start
 - [x] deployment
 - [ ] add searching
 - [ ] add logging
+- [ ] add testing in Cypress
 - [ ] add view with detailed information about plant
 - [ ] improvement in appearance and layout
 
