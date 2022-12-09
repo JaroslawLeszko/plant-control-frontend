@@ -5,8 +5,6 @@ import {PlantList} from "./components/Plant/PlantList";
 import {Header} from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import {EditPlant} from "./components/Plant/EditPlant";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 function App() {
 

@@ -16,13 +16,13 @@ export const Header = () => {
     // )
 
     return (
-        <Nav defaultActiveKey="/home" as="ul">
+        <Nav className="justify-content-between bg-primary px-4 py-2" defaultActiveKey="/home" as="ul">
             <Nav.Item as="li">
-                <Nav.Link href="/">Home</Nav.Link>
+                <a className="btn btn-primary" href="/" role="button">Home</a>
             </Nav.Item>
-            <h2>Plant control</h2>
+            <p className="h2 text-white text-uppercase">Plant control</p>
             <Nav.Item as="li">
-                <Nav.Link href="/add">Add plant</Nav.Link>
+                <a className="btn btn-primary" href="/add" role="button">Add plant</a>
             </Nav.Item>
         </Nav>
     )
