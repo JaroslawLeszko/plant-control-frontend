@@ -1,7 +1,8 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
+import ReactCrop from "react-image-crop";
 import {Link} from "react-router-dom";
 import {apiUrl} from "../../config/api";
-import './AddPlant.css';
+// import './AddPlant.css';
 
 
 
@@ -22,8 +23,6 @@ export const AddPlant = () => {
     const [image, setImage] = useState({preview: '', data: ''});
     const [status, setStatus] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
-
-
 
     const updateForm = (key: string, value: any) => {
         setForm(form => ({
@@ -87,14 +86,17 @@ export const AddPlant = () => {
             <form className="add-form" onSubmit={sendForm}>
                 <p>
                     <label>
-                        Image: <br/>
                         {image.preview && <img src={image.preview} alt={"image"} width='512' height='512' />}
-                        <input
-                            type="file"
-                            name='file'
-                            onChange={handleFileChange}
+                        {/*<input*/}
+                        {/*    type="file"*/}
+                        {/*    name='file'*/}
+                        {/*    onChange={handleFileChange}*/}
 
-                        />
+                        {/*/>*/}
+                        <div className="mb-3">
+                            <label htmlFor="formFile" className="form-label">Image:</label>
+                            <input className="form-control" type="file" id="formFile" onChange={handleFileChange}/>
+                        </div>
                         {status && <p>{status}</p>}
                     </label>
                 </p>

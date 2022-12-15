@@ -3,9 +3,11 @@ import {apiUrl} from "../../config/api";
 import {PlantEntity} from 'types';
 import {PlantImage} from "./PlantImage";
 import {Btn} from "../common/Btn";
-import {ProgressBar} from "../common/ProgressBar";
+// import {ProgressBar} from "../common/ProgressBar";
+import {Progress} from "../common/ProgressBar";
 // import './PlantTableRow.css'
 import {Row, Col, Container, Button} from "react-bootstrap";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 interface Props {
     plant: PlantEntity;
@@ -123,41 +125,38 @@ export const PlantTableRow = (props: Props) => {
     //     </table>
     // )
     return (
-        <Container className="bg-primary">
+        <Container fluid="sm" className="bg-primary mx-5 my-2 p-4 rounded-3">
             <Row>
-                <Col className="">
+                <Col xs={12} md={6} xl={4} className="">
                     <PlantImage plantSrc={props.plant.image}/>
                 </Col>
-                <Col className="justify-content-center">
-                    <Row className="p-2">
-                        {(props.plant.name).toUpperCase()}
+                <Col xs={12} md={6} xl={4} className="">
+                    <Row className="my-2 mx-0 py-3">
+                        <h4>{(props.plant.name).toUpperCase()}</h4>
                     </Row>
-                    <Row className="p-2">
-                        <Row>Next watering</Row>
-                        <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod}
-                                     waterEta={daysToWater}/>
+                    <Row className="my-2 mx-0 py-1">Next watering</Row>
+                    <Progress variant="info" period={props.plant.wateringPeriod} eta={daysToWater}/>
+                    <Row className="my-2 mx-0 py-1">Next fertilization</Row>
+                    <Progress variant="warning" period={props.plant.fertilizationPeriod} eta={daysToFertilizer}/>
+                    <Row className="my-2 mx-0 py-3">
+                        Last dust removal: {(new Date(dust)).toDateString()}
                     </Row>
-                    <Row className="p-2">
-                        <Row>Next fertilization</Row>
-                        <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer}
-                                     filerColor={'#83603c'}/>
-                    </Row>
-                    <Row className="p-2">
-                        Last dust removal: ${(new Date(dust)).toDateString()}
-                    </Row>
-                    <Row className="p-2">
-                        {props.plant.quarantine === 0 ? null : "QUARANTINE"}
+                    <Row className="my-2 mx-0 py-3">
+                        {props.plant.quarantine === 0 ? null : <div className="alert alert-danger" role="alert">
+                            QUARANTINE
+                        </div>}
+
                     </Row>
                 </Col>
-                <Col>
+                <Col xs={12} md={6} xl={4}>
                     <Row>
-                        <a className="btn btn-primary" href={`/edit/${props.plant.id}`} role="button">Edit</a>
+                        <a className="btn btn-primary px-5 my-3" href={`/edit/${props.plant.id}`} role="button">Edit</a>
                     </Row>
-                    <Row>
-                        <Button variant="secondary" onClick={watering}>Water</Button>
-                        <Button variant="secondary" onClick={fertilization}>fertilize</Button>
-                        <Button variant="secondary" onClick={removeDust}>remove dust</Button>
-                        <Button variant="secondary" onClick={deletePlant}>❌</Button>
+                    <Row className="px-5">
+                        <Button className="m-1" variant="info" onClick={watering}>Water</Button>
+                        <Button className="m-1" variant="warning" onClick={fertilization}>fertilize</Button>
+                        <Button className="m-1" variant="dark" onClick={removeDust}>remove dust</Button>
+                        <Button className="m-1" variant="primary" onClick={deletePlant}>❌</Button>
                     </Row>
                 </Col>
             </Row>

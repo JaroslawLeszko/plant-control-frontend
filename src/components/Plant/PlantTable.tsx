@@ -36,18 +36,26 @@ export const PlantTable = (props: Props) => {
     };
     return (
     <>
-        <table className="plant-table">
-            <tbody>
-            {
-                currentItems.map(plant =>
-                    <PlantTableRow
-                        plant={plant} key={plant.id}
-                        onPlantsChange={props.onPlantsChange}
-                    />
-                )
-            }
-            </tbody>
-        </table>
+        {/*<table className="plant-table">*/}
+        {/*    <tbody>*/}
+        {/*    {*/}
+        {/*        currentItems.map(plant =>*/}
+        {/*            <PlantTableRow*/}
+        {/*                plant={plant} key={plant.id}*/}
+        {/*                onPlantsChange={props.onPlantsChange}*/}
+        {/*            />*/}
+        {/*        )*/}
+        {/*    }*/}
+        {/*    </tbody>*/}
+        {/*</table>*/}
+        {
+            currentItems.map(plant =>
+                <PlantTableRow
+                    plant={plant} key={plant.id}
+                    onPlantsChange={props.onPlantsChange}
+                />
+            )
+        }
         <ReactPaginate
             breakLabel="..."
             nextLabel="next >"
