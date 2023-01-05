@@ -44,6 +44,6 @@ interface Props {
 export const Progress = (props: Props) => {
     const progressWidth = Number(100 / props.period);
     const progress = progressWidth * props.eta;
-    return <ProgressBar variant={`${props.variant}`} now={progress} label={`${props.eta} days`}/>;
+    return <ProgressBar className="" variant={`${props.variant}`} now={progress} label={`${props.eta} days`}/>;
 }
 

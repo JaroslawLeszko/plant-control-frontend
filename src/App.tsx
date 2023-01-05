@@ -16,6 +16,8 @@ function App() {
         <Header/>
         <div className="img-fluid" style={{
             backgroundImage: `url(${image})`,
+            backgroundAttachment: "fixed",
+            backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
         }}>
