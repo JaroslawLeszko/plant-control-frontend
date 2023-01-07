@@ -125,38 +125,38 @@ export const PlantTableRow = (props: Props) => {
     //     </table>
     // )
     return (
-        <Container fluid="sm" className="bg-primary mx-5 my-2 p-4 rounded-3">
-            <Row>
-                <Col xs={12} md={6} xl={4} className="">
+        <Container className="bg-primary rounded-3 w-auto">
+            <Row className="text-center mb-2 py-3">
+                <Col sm={12} md={8} lg={4}>
                     <PlantImage plantSrc={props.plant.image}/>
                 </Col>
-                <Col xs={12} md={6} xl={4} className="">
-                    <Row className="my-2 mx-0 py-3">
+                <Col sm={12} md={8} lg={4}>
+                    <Row className="my-3">
                         <h4>{(props.plant.name).toUpperCase()}</h4>
                     </Row>
-                    <Row className="my-2 mx-0 py-1 pt-5">Next watering</Row>
+                    <Row className="m-1 pt-1 mt-lg-5">Next watering</Row>
                     <Progress variant="info" period={props.plant.wateringPeriod} eta={daysToWater}/>
-                    <Row className="my-2 mx-0 py-1 pt-5">Next fertilization</Row>
+                    <Row className="m-1 pt-1 mt-lg-5">Next fertilization</Row>
                     <Progress variant="warning" period={props.plant.fertilizationPeriod} eta={daysToFertilizer}/>
-                    <Row className="my-2 mx-0 py-3 pt-5">
+                    <Row className="m-1 pt-1 mt-lg-5">
                         Last dust removal: {(new Date(dust)).toDateString()}
                     </Row>
-                    <Row className="my-2 mx-0 py-3">
+                    <Row className="m-1 my-lg-5">
                         {props.plant.quarantine === 0 ? null : <div className="alert alert-danger" role="alert">
                             QUARANTINE
                         </div>}
 
                     </Row>
                 </Col>
-                <Col xs={12} md={6} xl={4}>
+                <Col sm={12} md={8} lg={4}>
                     <Row>
-                        <a className="btn btn-primary px-5 my-3 text-white text-uppercase" href={`/edit/${props.plant.id}`} role="button">Edit</a>
+                        <a className="btn btn-primary my-3 text-white text-uppercase" href={`/edit/${props.plant.id}`} role="button">Edit</a>
                     </Row>
-                    <Row className="px-5 pt-5">
-                        <Button className="m-2 p-3" variant="info" onClick={watering}>Water</Button>
-                        <Button className="m-2 p-3" variant="warning" onClick={fertilization}>fertilize</Button>
-                        <Button className="m-2 p-3" variant="dark" onClick={removeDust}>remove dust</Button>
-                        <Button className="m-2 p-3" variant="primary" onClick={deletePlant}>❌</Button>
+                    <Row className="m-1 mt-lg-5">
+                        <Button className="my-1 my-lg-2" variant="info" onClick={watering}>Water</Button>
+                        <Button className="my-1 my-lg-2" variant="warning" onClick={fertilization}>fertilize</Button>
+                        <Button className="my-1 my-lg-2" variant="dark" onClick={removeDust}>remove dust</Button>
+                        <Button className="my-1 my-lg-2" variant="primary" onClick={deletePlant}>❌</Button>
                     </Row>
                 </Col>
             </Row>

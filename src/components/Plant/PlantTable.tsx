@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import ReactPaginate from 'react-paginate';
 import {PlantEntity} from 'types';
 import {PlantTableRow} from "./PlantTableRow";
-import './PlantTable.css'
+// import './PlantTable.css'
 
 
 type Select = {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {PlantEntity} from 'types';
 import { PlantTable } from "./PlantTable";
 import {apiUrl} from "../../config/api";
-import './PlantList.css';
+// import './PlantList.css';
 
 export const PlantList = () => {
     const [data, setData] = useState<PlantEntity[] | null>(null);

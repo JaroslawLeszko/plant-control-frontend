@@ -82,7 +82,7 @@ export const AddPlant = () => {
     }
 
     return <>
-        <div className="add text-center">
+        <Col xs={12} md={6} xl={4} className="offset-xl-4 offset-md-3 text-center">
             <h2 className="p-4">ADD PLANT TO COLLECTION</h2>
 
             {/*<form className="add-form" onSubmit={sendForm}>*/}
@@ -190,9 +190,9 @@ export const AddPlant = () => {
 
             {/*</Col>*/}
             <Form className="px-5 " onSubmit={sendForm}>
+                {image.preview && <img src={image.preview} width='50%' height='auto' />}
                 <Form.Group controlId="formFile" className="mb-3">
                     <Form.Label>Add image</Form.Label>
-                    {image.preview && <img src={image.preview} width='50%' height='auto' />}
                     <Form.Control
                         type="file"
                         name='file'
@@ -268,6 +268,6 @@ export const AddPlant = () => {
                 </Button>
             </Form>
             <a className="btn btn-primary mx-5 my-2" href="/" role="button">Back</a>
-        </div>
+        </Col>
     </>
 };
