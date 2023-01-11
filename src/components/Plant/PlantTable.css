@@ -1,30 +1,27 @@
-.plant-table {
-    display: grid;
+.pagination {
+    list-style: none;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    margin-inside: 5rem;
+    font-size: 1.2rem;
+    gap: 5px;
 }
 
-.pagination {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-inside: 5rem;
-      font-size: 1.2rem;
-      gap: 5px;
-     /*color: white;*/
-  }
 .pagination .page-num {
-      padding: 8px 15px;
-      cursor: pointer;
-      border-radius: 3px;
-      font-weight: 400;
-  }
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+    text-decoration: none;
+    color: black;
+}
 
 .pagination .page-num:hover {
-      background-color: #2b610c;
-      color: white;
-  }
+    background-color: #68a320;
+    color: white;
+}
 
 .pagination .active {
-      background-color: #2b610c;
-  }
+    background-color: #68a320;
+}

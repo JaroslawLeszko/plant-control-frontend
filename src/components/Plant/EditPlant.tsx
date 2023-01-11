@@ -1,12 +1,8 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
-import {Spinner} from "../common/Spinner";
-import './EditPlant.css';
 import Form from "react-bootstrap/Form";
-import {Button, Col} from "react-bootstrap";
-
-
+import {Button, Col, Spinner} from "react-bootstrap";
 
 export const EditPlant = () => {
     const [editPlant, setEditPlant] = useState({
@@ -24,7 +20,7 @@ export const EditPlant = () => {
             const result = await res.json();
             setEditPlant(result);
         })();
-    },[]);
+    }, []);
 
     const {id} = useParams();
     const [loading, setLoading] = useState<boolean>(false);
@@ -92,91 +88,16 @@ export const EditPlant = () => {
     };
 
     if (loading) {
-        return <Spinner/>
+        return <Spinner animation="border" variant="primary"/>
     }
-
-    // return <>
-    //     <div className="edit">
-    //         <h2>EDIT PLANT INFO</h2>
-    //         <form className="add-form" onSubmit={sendForm}>
-    //             <p>
-    //                 <label>
-    //                     <button className="delete-image" onClick={e => updatePlant('image', null)}
-    //                     >Delete image</button>
-    //                 </label>
-    //             </p>
-    //             <p>
-    //                 <label>
-    //                     Change image: <br/>
-    //                     {image.preview && <img src={image.preview} alt={"image"} width='500' height='500' />}
-    //                     <input
-    //                         type="file"
-    //                         name='file'
-    //                         onChange={handleFileChange}
-    //
-    //                     />
-    //                 </label>
-    //             </p>
-    //             <p>
-    //                 <label>
-    //                     Name: <br/>
-    //                     <input
-    //                         type="text"
-    //                         minLength={3}
-    //                         maxLength={50}
-    //                         defaultValue={editPlant.name}
-    //                         onChange={e => updatePlant('name', e.target.value)}
-    //                     />
-    //                 </label>
-    //             </p>
-    //             <p>
-    //                 <label>
-    //                     Watering period: <br/>
-    //                     <input
-    //                         type="number"
-    //                         min={0}
-    //                         defaultValue={editPlant.wateringPeriod}
-    //                         onChange={e => updatePlant('wateringPeriod', e.target.value)}
-    //                     />
-    //                 </label>
-    //             </p>
-    //             <p>
-    //                 <label>
-    //                     Fertilization period: <br/>
-    //                     <input
-    //                         type="number"
-    //                         min={0}
-    //                         defaultValue={editPlant.fertilizationPeriod}
-    //                         onChange={e => updatePlant('fertilizationPeriod', e.target.value)}
-    //                     />
-    //                 </label>
-    //             </p>
-    //             <p>
-    //                 <label>
-    //                     Quarantine: <br/>
-    //                     <input
-    //                         type="checkbox"
-    //                         defaultValue={editPlant.quarantine}
-    //                         onChange={e => updatePlant('quarantine', editPlant.quarantine === 0 ? 1 : 0)}
-    //                         checked={editPlant.quarantine === 1}
-    //                     />
-    //                 </label>
-    //             </p>
-    //             <button className="add-form-button" type="submit">Save</button>
-    //         </form>
-    //         <Link className="edit-back-btn" to="/">Back</Link>
-    //     </div>
-    // </>
 
     return <>
         <Col xs={12} md={6} xl={4} className="offset-xl-4 offset-md-3 text-center">
             <h2 className="p-4">EDIT PLANT INFO</h2>
 
-
-
-
             <Form className="px-5 " onSubmit={sendForm}>
-                <Button variant="danger" className="mx-5 my-2" onClick={e => updatePlant('image', null)}>Delete image</Button>
+                <Button variant="danger" className="mx-5 my-2" onClick={e => updatePlant('image', null)}>Delete
+                    image</Button>
                 <Form.Group controlId="formFile" className="mb-3">
                     <Form.Label>Change image</Form.Label>
                     <Form.Control

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {PlantEntity} from 'types';
 import { PlantTable } from "./PlantTable";
 import {apiUrl} from "../../config/api";
-// import './PlantList.css';
+import {Spinner} from "react-bootstrap";
 
 export const PlantList = () => {
     const [data, setData] = useState<PlantEntity[] | null>(null);
@@ -19,7 +19,7 @@ export const PlantList = () => {
     }, []);
 
     if (data === null) {
-        return <p>Loading...</p>
+        return <Spinner animation="border" variant="primary"/>
     }
 
     return <div className="plant-list">

@@ -2,12 +2,10 @@ import React, {MouseEvent, SetStateAction, useState} from "react";
 import {apiUrl} from "../../config/api";
 import {PlantEntity} from 'types';
 import {PlantImage} from "./PlantImage";
-import {Btn} from "../common/Btn";
-// import {ProgressBar} from "../common/ProgressBar";
 import {Progress} from "../common/ProgressBar";
-// import './PlantTableRow.css'
+import './PlantTableRow.css'
 import {Row, Col, Container, Button} from "react-bootstrap";
-import ProgressBar from "react-bootstrap/ProgressBar";
+
 
 interface Props {
     plant: PlantEntity;
@@ -88,42 +86,6 @@ export const PlantTableRow = (props: Props) => {
         }
         props.onPlantsChange();
     };
-
-
-    // return (
-    //     <table>
-    //         <tbody>
-    //         <div className="table">
-    //             <tr className="table-row">
-    //                 <PlantImage plantSrc={props.plant.image}/>
-    //                 <div className="table-row-info-actions">
-    //                     <div className="table-row-info">
-    //                         <tr className="item-name">{(props.plant.name).toUpperCase()}</tr>
-    //                         <tr>{`Next watering`}</tr>
-    //                         <ProgressBar filerColor={'#a8bcce'} wateringPeriod={props.plant.wateringPeriod}
-    //                                      waterEta={daysToWater}/>
-    //                         <tr>{`Next fertilization`}</tr>
-    //                         <ProgressBar wateringPeriod={props.plant.fertilizationPeriod} waterEta={daysToFertilizer}
-    //                                      filerColor={'#83603c'}/>
-    //                         <tr>{`Last dust removal: ${(new Date(dust)).toDateString()}`}</tr>
-    //
-    //                         <tr className="quarantine">{props.plant.quarantine === 0 ? null : "QUARANTINE"}</tr>
-    //                     </div>
-    //
-    //                     <tr className="table-row-actions">
-    //                         <Btn className="btn" to={`/edit/${props.plant.id}`} text="Edit"/>
-    //                         <button className="waterBtn" onClick={watering} title="water plant">WATER</button>
-    //                         <button className="fertilizeBtn" onClick={fertilization} title="fertilize plant">FERTILIZE
-    //                         </button>
-    //                         <button className="dustBtn" onClick={removeDust} title="remove dust">DUST</button>
-    //                         <button className="deleteBtn" onClick={deletePlant} title="delete plant">❌</button>
-    //                     </tr>
-    //                 </div>
-    //             </tr>
-    //         </div>
-    //         </tbody>
-    //     </table>
-    // )
     return (
         <Container className="bg-primary rounded-3 w-auto">
             <Row className="text-center mb-2 py-3">
@@ -142,7 +104,7 @@ export const PlantTableRow = (props: Props) => {
                         Last dust removal: {(new Date(dust)).toDateString()}
                     </Row>
                     <Row className="m-1 my-lg-5">
-                        {props.plant.quarantine === 0 ? null : <div className="alert alert-danger" role="alert">
+                        {props.plant.quarantine === 0 ? null : <div className="alert alert-custom" role="alert">
                             QUARANTINE
                         </div>}
 

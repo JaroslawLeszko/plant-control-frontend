@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
 import {apiUrl} from "../../config/api";
-// import './PlantImage.css'
 import Image from 'react-bootstrap/Image'
 
 interface Props {
@@ -29,7 +28,6 @@ export const PlantImage = (props: Props) => {
 
     return (
         <Image src={img} className="img-fluid rounded-3" alt={props.plantSrc}/>
-        // <img src={img} alt={props.plantSrc}/>
     )
 }
 

@@ -2,8 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import ReactPaginate from 'react-paginate';
 import {PlantEntity} from 'types';
 import {PlantTableRow} from "./PlantTableRow";
-// import './PlantTable.css'
-
+import './PlantTable.css'
 
 type Select = {
     selected: number;
@@ -36,18 +35,6 @@ export const PlantTable = (props: Props) => {
     };
     return (
     <>
-        {/*<table className="plant-table">*/}
-        {/*    <tbody>*/}
-        {/*    {*/}
-        {/*        currentItems.map(plant =>*/}
-        {/*            <PlantTableRow*/}
-        {/*                plant={plant} key={plant.id}*/}
-        {/*                onPlantsChange={props.onPlantsChange}*/}
-        {/*            />*/}
-        {/*        )*/}
-        {/*    }*/}
-        {/*    </tbody>*/}
-        {/*</table>*/}
         {
             currentItems.map(plant =>
                 <PlantTableRow
@@ -58,11 +45,11 @@ export const PlantTable = (props: Props) => {
         }
         <ReactPaginate
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel=">"
             onPageChange={handlePageClick}
             pageRangeDisplayed={5}
             pageCount={pageCount}
-            previousLabel="< previous"
+            previousLabel="<"
             containerClassName="pagination"
             pageLinkClassName="page-num"
             previousLinkClassName="page-num"
