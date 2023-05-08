@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import {EditPlant} from "./components/Plant/EditPlant";
 
 import image from './5169546.jpg';
+import {Auth} from "./components/Auth";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         }}>
         <Routes >
             <Route path="/" element={<PlantList/>}/>
+            <Route path="/auth" element={<Auth/>}/>
             <Route path="/add" element={<AddPlant/>}/>
             <Route path="/edit/:id" element={<EditPlant/>}/>
         </Routes>

@@ -9,6 +9,7 @@ export const Header = () => {
         <Navbar bg="primary" expand="lg" className="rounded-bottom mb-1">
             <Container>
                 <Navbar.Brand href="/">Plant Control</Navbar.Brand>
+                <Navbar.Brand href="/auth">Login</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -16,6 +17,7 @@ export const Header = () => {
                         <Nav.Link href="/add">Add Plant</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+
             </Container>
         </Navbar>
     );
