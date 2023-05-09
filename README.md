@@ -8,9 +8,13 @@ Plant Control is an application to control the cultivation of house plants, taki
 
 Screenshosts
 
-![Main](https://user-images.githubusercontent.com/56537814/195659628-51a35b7d-cf7a-4e0e-96de-ed9ad59c6f05.jpg)
-![Add](https://user-images.githubusercontent.com/56537814/195659672-3526289e-49bf-4d5c-8f71-66de3ecf7fc7.jpg)
-![Edit](https://user-images.githubusercontent.com/56537814/195659695-18c13274-86f6-4bc9-b4dd-87ebfdcfd2a7.jpg)
+![Main](https://github.com/JaroslawLeszko/plant-control-frontend/assets/56537814/d567f9f7-1c94-416b-be09-6de7a768e48e)
+![Add](https://github.com/JaroslawLeszko/plant-control-frontend/assets/56537814/a4d9531f-91a3-45bf-91a7-b344e5f9b212)
+![Edit_2](https://github.com/JaroslawLeszko/plant-control-frontend/assets/56537814/ee761a66-0c1c-4878-8ba6-d1331b1d4bea)
+<p align="center">
+  <img src="https://github.com/JaroslawLeszko/plant-control-frontend/assets/56537814/3a6a2d94-187b-414c-8111-ede28323d9f2"/>
+</p>
+
 
 ## Tech Stack
 
