@@ -1,9 +1,7 @@
 import React, {ChangeEvent, FormEvent, SetStateAction, useState} from 'react';
-import {Link} from "react-router-dom";
 import {apiUrl} from "../../config/api";
-import './AddPlant.css';
-
-
+import Form from 'react-bootstrap/Form';
+import {Button, Col} from "react-bootstrap";
 
 export const AddPlant = () => {
 
@@ -22,8 +20,6 @@ export const AddPlant = () => {
     const [image, setImage] = useState({preview: '', data: ''});
     const [status, setStatus] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
-
-
 
     const updateForm = (key: string, value: any) => {
         setForm(form => ({
@@ -81,105 +77,88 @@ export const AddPlant = () => {
     }
 
     return <>
-        <div className="add">
-            <h2>ADD PLANT TO COLLECTION</h2>
+        <Col xs={12} md={6} xl={4} className="offset-xl-4 offset-md-3 text-center">
+            <h2 className="p-4">ADD PLANT TO COLLECTION</h2>
 
-            <form className="add-form" onSubmit={sendForm}>
-                <p>
-                    <label>
-                        Image: <br/>
-                        {image.preview && <img src={image.preview} alt={"image"} width='512' height='512' />}
-                        <input
-                            type="file"
-                            name='file'
-                            onChange={handleFileChange}
-
-                        />
-                        {status && <p>{status}</p>}
-                    </label>
-                </p>
-
-                <p>
-                    <label>
-                        Name: <br/>
-                        <input
-                            type="text"
-                            minLength={3}
-                            maxLength={50}
-                            defaultValue={form.name}
-                            onChange={e => updateForm('name', e.target.value)}
-
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Last watering: <br/>
-                        <input
-                            type="date"
-                            max={new Date().toISOString().split("T")[0]}
-                            defaultValue={form.lastWatering}
-                            onChange={e => updateForm('lastWatering', e.target.value)}
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Watering period (days): <br/>
-                        <input
-                            type="number"
-                            min={0}
-                            defaultValue={form.wateringPeriod}
-                            onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Last Fertilization: <br/>
-                        <input
-                            type="date"
-                            max={new Date().toISOString().split("T")[0]}
-                            defaultValue={form.lastFertilization}
-                            onChange={e => updateForm('lastFertilization', e.target.value)}
-                        />
-                    </label>
-                </p>
-
-                <p>
-                    <label>
-                        Fertilization period (days): <br/>
-                        <input
-                            type="number"
-                            min={0}
-                            defaultValue={form.fertilizationPeriod}
-                            onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Last Dust removal: <br/>
-                        <input
-                            type="date"
-                            max={new Date().toISOString().split("T")[0]}
-                            defaultValue={form.lastDustRemoval}
-                            onChange={e => updateForm('lastDustRemoval', e.target.value)}
-                        />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Quarantine: <br/>
-                        <input
-                            type="checkbox"
-                            onClick={e => updateForm('quarantine', 1)}/>
-                    </label>
-                </p>
-
-                <button className="add-form-button" type="submit">Save</button>
-            </form>
-            <Link className="add-back-btn" to="/">Back</Link>
-        </div>
+            <Form className="px-5 " onSubmit={sendForm}>
+                {image.preview && <img src={image.preview} width='50%' height='auto' />}
+                <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Label>Add image</Form.Label>
+                    <Form.Control
+                        type="file"
+                        name='file'
+                        onChange={handleFileChange}
+                    />
+                    {status && <p>{status}</p>}
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        minLength={3}
+                        maxLength={50}
+                        defaultValue={form.name}
+                        onChange={e => updateForm('name', e.target.value)}
+                        placeholder="Enter plant name"
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formLastWaterin">
+                    <Form.Label>Last watering</Form.Label>
+                    <Form.Control
+                        type="date"
+                        max={new Date().toISOString().split("T")[0]}
+                        defaultValue={form.lastWatering}
+                        onChange={e => updateForm('lastWatering', e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formWateringPeriod">
+                    <Form.Label>Watering period (days)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        min={0}
+                        defaultValue={form.wateringPeriod}
+                        onChange={e => updateForm('wateringPeriod', Number(e.target.value))}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formLastFertilization">
+                    <Form.Label>Last Fertilization</Form.Label>
+                    <Form.Control
+                        type="date"
+                        max={new Date().toISOString().split("T")[0]}
+                        defaultValue={form.lastFertilization}
+                        onChange={e => updateForm('lastFertilization', e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formFertilizationPeriod">
+                    <Form.Label>Fertilization period (days)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        min={0}
+                        defaultValue={form.fertilizationPeriod}
+                        onChange={e => updateForm('fertilizationPeriod', Number(e.target.value))}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formLastDustRemoval">
+                    <Form.Label>Last Dust removal</Form.Label>
+                    <Form.Control
+                        type="date"
+                        max={new Date().toISOString().split("T")[0]}
+                        defaultValue={form.lastDustRemoval}
+                        onChange={e => updateForm('lastDustRemoval', e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formQuarantine">
+                    <Form.Label>Quarantine</Form.Label>
+                    <Form.Check
+                        type="checkbox"
+                        onClick={e => updateForm('quarantine', 1)}
+                    />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Save
+                </Button>
+            </Form>
+            <a className="btn btn-primary mx-5 my-2" href="/" role="button">Back</a>
+        </Col>
     </>
 };
